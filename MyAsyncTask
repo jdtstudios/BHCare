@@ -1,0 +1,58 @@
+private  class MyAsyncTask extends AsyncTask<String, String, Void>{
+        /*
+        * Declare my own AsyncTask [MyAsyncTask]
+        * doInBackground is where all of the background work (DB reads & writes ...ect
+        * when what ever work you are doing is ready to send_back or publish use the publishProgress
+        *
+        * onProgressUpdate recieves the doInBackground publishProgress results
+        * now you can process the results in the Forgound process(Thread)
+        * */
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            for (String string: strings) {
+                publishProgress(string);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+            output.append(values[0] + "\n");
+        }
+
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            /*
+            *  onPreExecute doesn't receive any arguments and can be used to set up the app before running the task.
+            *  */
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            /*
+            *  protected void onProgressUpdate()
+            *
+            * OnPostExecute receives the values that match the type of the last generic on the AsyncTask extension declaration.
+            * When you use an AsyncTask to make a web service call,
+            * you might return the data from the call right here.
+            *
+            * */
+        }
+
+
+    }
