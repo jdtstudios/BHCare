@@ -1,3 +1,16 @@
+
+// example of forgound starting and requesting a Background AsynTask
+public void runClickHandler(View view){
+
+        // Create a instance of MyAsyncTask class
+        MyAsyncTask myAsynTask = new MyAsyncTask();
+        // Send it some data to process
+        myAsynTask.execute("Text1","Text2","TEST#");
+        // when is finshes the tasks the results will be displayed is a textView field output
+    }
+
+
+
 private  class MyAsyncTask extends AsyncTask<String, String, Void>{
         /*
         * Declare my own AsyncTask [MyAsyncTask]
